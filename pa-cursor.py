@@ -57,7 +57,7 @@ def main():
             
         all_videos.extend(videos)
         page += 1
-        time.sleep(0)  # 添加延迟，避免请求过快
+        time.sleep(0.15)  # 添加延迟，避免请求过快
     
     print(f'共爬取到 {len(all_videos)} 个视频')
     save_to_csv(all_videos)
