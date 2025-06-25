@@ -22,19 +22,26 @@ def fetch_bilibili_favorites(media_id, pn=1, ps=20):
     response.raise_for_status()
     return response.json()
 
+# 在parse_bilibili_favorites函数中添加markdown_link列
 def parse_bilibili_favorites(json_data):
     videos = []
     if not json_data['data']['medias']:
         return None
     
     for item in json_data['data']['medias']:
+        # 生成Markdown格式链接 [标题_UP主](URL)
+        markdown_link = f"[{item['title']}_{item['upper']['name']}](https://www.bilibili.com/video/{item['bvid']})"
+        
         video = {
             'title': item['title'],
             'up_name': item['upper']['name'],
-            'bvid': item['bvid']
+            'bvid': item['bvid'],
+            'markdown_link': markdown_link  # 新增列
         }
         videos.append(video)
     return videos
+
+# 无需修改save_to_csv函数，它会自动处理新增的列
 
 def save_to_csv(data, filename='bilibili_favorites.csv'):
     df = pd.DataFrame(data)
