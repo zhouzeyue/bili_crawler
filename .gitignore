@@ -10,3 +10,6 @@ bilibili_favorites3.9.txt
 bilibili_favorites2.6.txt
 .gitignore
 bilibili_favorites.csv
+bilibili_fav_titles.txt
+pachong.py
+test02-qwen.py
